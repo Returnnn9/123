@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Tap Force Market — Продажа аккаунтов</title>
+
+    <!-- Public path for hosting (set this to the subdirectory when deploying) -->
+    <meta name="public-path" content="/" />
+
+    <!-- Import map for esm.sh -->
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react@18.2.0",
+          "react-dom": "https://esm.sh/react-dom@18.2.0",
+          "react-dom/client": "https://esm.sh/react-dom@18.2.0/client"
+        }
+      }
+    </script>
+
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Expose PUBLIC_PATH (read from meta) so app can resolve static assets when hosted in a subdirectory -->
+    <script>
+      (function(){
+        var meta = document.querySelector('meta[name="public-path"]');
+        window.__PUBLIC_PATH__ = (meta && meta.getAttribute('content')) || '/';
+        // Ensure it always ends with a slash
+        if (!window.__PUBLIC_PATH__.endsWith('/')) window.__PUBLIC_PATH__ += '/';
+      })();
+    </script>
+
+    <script type="module" src="./src/main.jsx"></script>
+  </body>
+</html>
+
